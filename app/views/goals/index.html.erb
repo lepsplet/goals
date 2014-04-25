@@ -1,2 +1,17 @@
-<h1>Goals#index</h1>
-<p>Find me in app/views/goals/index.html.erb</p>
+<h1>All Goals</h1>
+
+<% if @goals.empty? %>
+	<h3>You have completed all the goals. Yuhey!!!</h3>
+<% else %>
+	<ol>
+		<% for goal in @goals %>
+			<li><%= link_to goal.name, edit_goal_path(goal) %>
+		<%= link_to 'Delete', goal_path(goal), method: :delete, data: { confirm: 'Did you realy complete this goal' } %>
+			</li>
+		<% end %>
+
+	</ol>
+<% end %>
+<br>
+<%= link_to 'New goal', new_goal_path %>
+
